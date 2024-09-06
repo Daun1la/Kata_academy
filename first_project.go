@@ -30,7 +30,6 @@ func main() {
 		90: "XC", 91: "XCI", 92: "XCII", 93: "XCIII", 94: "XCIV", 95: "XCV",
 		96: "XCVI", 97: "XCVII", 98: "XCVIII", 99: "XCIX", 100: "C",
 	}
-	// Создаем новую карту, которая будет содержать первые десять элементов исходной карты
 	roman := [10]string{"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"}
 	accept := [24]string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "+", "-", "*", "/"}
 
@@ -78,6 +77,7 @@ func main() {
 		if (!firstFlag && lastFlag) || (firstFlag && !lastFlag) {
 			panic("Калькулятор умеет работать только с арабскими или римскими цифрами одновременно")
 		} else {
+			// Переводим римские числа в арабские
 			for idx, value := range m {
 				if value == words[0] {
 					words[0] = fmt.Sprintf("%d", idx)
@@ -86,9 +86,10 @@ func main() {
 					words[2] = fmt.Sprintf("%d", idx)
 				}
 			}
-
 			first, _ := strconv.Atoi(words[0])
 			last, _ := strconv.Atoi(words[len(words)-1])
+
+			// firstFlag взведется в true, если в исходной сроке есть римская цифра
 			if !firstFlag {
 				switch words[1] {
 				case "+":
